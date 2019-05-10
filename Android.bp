@@ -908,6 +908,12 @@ cc_library_static {
     defaults: ["skia_deps",
                "skia_pgo",
     ],
+
+    product_variables: {
+        imx6dq_soc: {
+            cflags: ["-DFSL_FORCE_USE_OPENGL_2X"],
+        },
+    },
 }
 
 // Build libskia with PGO by default.

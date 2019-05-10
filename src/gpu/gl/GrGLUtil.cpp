@@ -219,6 +219,11 @@ GrGLVersion GrGLGetVersionFromString(const char* versionString) {
 
     n = sscanf(versionString, "OpenGL ES %d.%d", &major, &minor);
     if (2 == n) {
+#ifdef FSL_FORCE_USE_OPENGL_2X
+        //force OpenGL ES Version as 2.0
+        major = 2;
+        minor = 0;
+#endif
         return GR_GL_VER(major, minor);
     }
 
@@ -240,6 +245,11 @@ GrGLSLVersion GrGLGetGLSLVersionFromString(const char* versionString) {
 
     n = sscanf(versionString, "OpenGL ES GLSL ES %d.%d", &major, &minor);
     if (2 == n) {
+#ifdef FSL_FORCE_USE_OPENGL_2X
+        //force GLSL ES Version as 1.0
+        major = 1;
+        minor = 0;
+#endif
         return GR_GLSL_VER(major, minor);
     }
 
